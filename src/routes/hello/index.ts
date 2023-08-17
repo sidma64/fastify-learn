@@ -1,10 +1,16 @@
-import { FastifyPluginAsync } from "fastify";
+import { FastifyPluginAsync, RequestGenericInterface } from "fastify";
 
-const example: FastifyPluginAsync = async (fastify, opts): Promise<void> => {
-    fastify.get("/:name", async function (request, reply) {
-        const { name } = request.params as { name: string };
-        return `Hello ${name}`;
+interface nameRequest extends RequestGenericInterface {
+    Params: {
+        name: string;
+    };
+}
+
+const hello: FastifyPluginAsync = async (fastify, opts): Promise<void> => {
+    fastify.get<nameRequest>("/:name", async function (req) {
+        const { name } = req.params;
+        return { message: `Hello ${name}` };
     });
 };
 
-export default example;
+export default hello;
