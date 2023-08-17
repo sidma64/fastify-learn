@@ -1,8 +1,9 @@
 import { FastifyPluginAsync } from "fastify";
 
 const example: FastifyPluginAsync = async (fastify, opts): Promise<void> => {
-    fastify.get("/", async function (request, reply) {
-        return "this is an example";
+    fastify.get("/:name", async function (request, reply) {
+        const { name } = request.params as { name: string };
+        return `Hello ${name}`;
     });
 };
 
