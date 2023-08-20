@@ -5,5 +5,5 @@ export default {
         added: { type: "string", format: "date-time" },
         user: { type: "string" },
     },
-    required: ["content"],
+    required: ["text", "added", "user"],
 } as const;

@@ -1,5 +1,6 @@
 import fp from "fastify-plugin";
 import fastifyEnv from "@fastify/env";
+import { findUp } from "find-up";
 
 const schema = {
     type: "object",
@@ -14,7 +15,9 @@ const schema = {
 export default fp(async (fastify, opts) => {
     fastify.register(fastifyEnv, {
         schema: schema,
-        dotenv: true,
+        dotenv: {
+            path: await findUp(".env"),
+        },
         confKey: "config",
     });
 });

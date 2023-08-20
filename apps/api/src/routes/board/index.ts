@@ -22,12 +22,14 @@ const routes: FastifyPluginAsync = async (fastify, opts): Promise<void> => {
             schema: { body: messageSchema },
         },
         (request, reply) =>
-            fastify.mongo.db?.collection("messages").insertOne(request.body)
+            fastify.mongo.db
+                ?.collection("messages")
+                .insertOne({ ...request.body, added: new Date().toISOString })
     );
 
     fastify.get("/new", (req, reply) => {
-        reply.view("form.ejs", {text: "Hello World!"})
-    })
+        reply.view("form.ejs", { text: "Hello World!" });
+    });
 };
 
 export default routes;
