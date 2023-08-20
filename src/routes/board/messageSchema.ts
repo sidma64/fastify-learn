@@ -1,6 +1,4 @@
-import { FromSchema } from "json-schema-to-ts";
-
-const messageSchema = {
+export default {
     type: "object",
     properties: {
         content: { type: "string" },
@@ -8,7 +6,3 @@ const messageSchema = {
     },
     required: ["content"],
 } as const;
-
-export default messageSchema;
-
-export type Message = FromSchema<typeof messageSchema>

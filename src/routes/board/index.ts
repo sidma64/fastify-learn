@@ -1,6 +1,7 @@
 import { FastifyPluginAsync } from "fastify";
 import mongodb from "@fastify/mongodb";
-import messageSchema, { Message } from "./messageSchema.js";
+import { JsonSchemaToTsProvider } from "@fastify/type-provider-json-schema-to-ts";
+import messageSchema from "./messageSchema.js";
 
 const routes: FastifyPluginAsync = async (fastify, opts): Promise<void> => {
     fastify.register(mongodb, {
@@ -9,18 +10,19 @@ const routes: FastifyPluginAsync = async (fastify, opts): Promise<void> => {
         database: "board",
     });
 
-    fastify.get("/", async function (request, reply) {
-        return this.mongo.db?.collection("messages").find().toArray();
-    });
-
-    fastify.post<{ Body: Message }>(
+    fastify.get(
         "/",
-        { schema: { body: messageSchema } },
-        async function (request, reply) {
-            return this.mongo.db
-                ?.collection("messages")
-                .insertOne(request.body);
-        }
+        (request, reply) =>
+            fastify.mongo.db?.collection("messages").find().toArray()
+    );
+
+    fastify.withTypeProvider<JsonSchemaToTsProvider>().post(
+        "/",
+        {
+            schema: { body: messageSchema },
+        },
+        (request, reply) =>
+            fastify.mongo.db?.collection("messages").insertOne(request.body)
     );
 };
 

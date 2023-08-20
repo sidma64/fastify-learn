@@ -24,6 +24,7 @@
         "@fastify/env": "^4.2.0",
         "@fastify/mongodb": "^7.0.0",
         "@fastify/sensible": "^5.0.0",
+        "@fastify/type-provider-json-schema-to-ts": "^2.2.2",
         "fastify": "^4.0.0",
         "fastify-cli": "^5.8.0",
         "fastify-plugin": "^4.0.0",
