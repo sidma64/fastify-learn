@@ -25,12 +25,15 @@
         "@fastify/mongodb": "^7.0.0",
         "@fastify/sensible": "^5.0.0",
         "@fastify/type-provider-json-schema-to-ts": "^2.2.2",
+        "@fastify/view": "^8.0.0",
+        "ejs": "^3.1.9",
         "fastify": "^4.0.0",
         "fastify-cli": "^5.8.0",
         "fastify-plugin": "^4.0.0",
         "prettier": "^3.0.2"
     },
     "devDependencies": {
+        "@types/ejs": "^3.1.2",
         "@types/node": "^20.4.4",
         "@types/tap": "^15.0.5",
         "c8": "^7.13.0",

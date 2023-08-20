@@ -1,8 +1,9 @@
 export default {
     type: "object",
     properties: {
-        content: { type: "string" },
-        date: { type: "string", format: "date-time" },
+        text: { type: "string" },
+        added: { type: "string", format: "date-time" },
+        user: { type: "string" },
     },
     required: ["content"],
 } as const;
