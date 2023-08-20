@@ -1,7 +1,7 @@
 import { FastifyPluginAsync } from "fastify";
 import mongodb from "@fastify/mongodb";
 import { JsonSchemaToTsProvider } from "@fastify/type-provider-json-schema-to-ts";
-import messageSchema from "./messageSchema.js";
+import { messageSchema } from "schemas";
 
 const routes: FastifyPluginAsync = async (fastify, opts): Promise<void> => {
     fastify.register(mongodb, {
